@@ -1,0 +1,13 @@
+select
+  specObj.z, PhotoObj.ObjID,
+    PhotoObj.cmodelMag_u,PhotoObj.cmodelMag_r,
+    PhotoObj.ra, PhotoObj.dec,
+
+  Photoz.absMagR into mydb.MyTable_8 from photoObj, specObj, Photoz
+  
+where
+  specObj.bestObjid = PhotoObj.ObjID 
+  and PhotoObj.ObjID =Photoz.ObjID
+    and class = 'galaxy' 
+    and specObj.zWarning = 0 
+    and specobj.z between 0.01 and 0.03
